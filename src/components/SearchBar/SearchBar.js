@@ -2,8 +2,8 @@ import React from 'react';
 import './SearchBar.css';
 
 let sortByOptions = {
-    'Nearest': "11",
-    'Highest Rated': '22',
+    'Highest Rated': '11',
+    'Nearest to me': '22',
     'Most Reviewed': '33'
 };
 
@@ -19,7 +19,7 @@ class SearchBar extends React.Component {
             <div className="SearchBar">
                 <div className="SearchBar-sort-options">
                     <ul>
-                    renderSortByOptions();
+                    {this.renderSortByOptions()}
                     </ul>
                 </div>
                 <div className="SearchBar-fields">
