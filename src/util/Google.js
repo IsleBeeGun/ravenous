@@ -4,7 +4,7 @@ let globalLongitude;
 function sortByKey(array, key) {
   return array.sort(function(a, b) {
       let x = a[key]; let y = b[key];
-      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+      return ((x > y) ? -1 : ((x < y) ? 1 : 0));
   });
 }
 navigator.geolocation.getCurrentPosition(function(position) {
@@ -19,17 +19,26 @@ const Google = {
       })
       .then(jsonResponse => {
         let spotsArray = jsonResponse.results.map(spot => {
+          let checkedPhoto = spot.photos;
+          if (checkedPhoto!=undefined) {
+            checkedPhoto = spot.photos[0].photo_reference;
+            checkedPhoto = fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=${checkedPhoto}&key=${apiKey}`)
+                      .then(response => {
+                        console.log(`This is response. ${response}`);
+                        return response.json();
+                      })
+                      .then(data => {
+                        console.log(`This is data. ${data}`);
+                        return data;
+                      });
+          } else {
+            checkedPhoto = 'https://s3.amazonaws.com/codecademy-content/programs/react/ravenous/pizza.jpg';
+          }
           return { 
             id: spot.id,                  
-            // imageSrc: fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=${spot.photos.photo_reference}&key=${apiKey}`)
-            //           .then(response => {
-            //             return response;
-            //           }, ()=> {
-            //             return '';
-            //           }),
-            imageSrc: '',
+            imageSrc: checkedPhoto,
             name: spot.name,
-            adress: spot.vicinity,
+            address: spot.vicinity,
             category: spot.types[0],
             pricing: spot.price_level,
             rating: spot.rating,

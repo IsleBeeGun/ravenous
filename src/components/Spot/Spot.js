@@ -9,11 +9,10 @@ class Spot extends React.Component {
           <img src={this.props.spot.imageSrc} alt=''/>
         </div>
         <h2>{this.props.spot.name}</h2>
-        <div className="Spot-information">
-          <div className="Spot-address">
+        <div className="Spot-address">
             <p>{this.props.spot.address}</p>
-            <p>Price level: {this.props.spot.pricing}</p>
-          </div>
+        </div>
+        <div className="Spot-information">
           <div className="Spot-reviews">
             <h3>{this.props.spot.category.toUpperCase()}</h3>
             <h3 className="rating">{`${this.props.spot.rating} stars`}</h3>
