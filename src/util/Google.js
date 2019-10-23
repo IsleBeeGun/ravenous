@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
   globalLatitude = position.coords.latitude;
   globalLongitude = position.coords.longitude;
 });
-const google = {
+const Google = {
   searchGoogle(keyword, type, sortBy) {
     return fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${globalLatitude},${globalLongitude}&rankby=distance&type=${type}&keyword=${keyword}&key=${apiKey}`)
       .then(response => {
@@ -19,7 +19,8 @@ const google = {
       })
       .then(jsonResponse => {
         let spotsArray = jsonResponse.results.map(spot => {
-          return {                   
+          return { 
+            id: spot.id,                  
             imageSrc: fetch(`https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=${spot.photos.photo_reference}&key=${apiKey}`)
                       .then(response => {
                         return response;
@@ -45,4 +46,4 @@ const google = {
       });
   }
 };
-/* TEST */
+export default Google;

@@ -8,7 +8,7 @@ class SpotList extends React.Component {
       <div className="SpotList">
         {
           this.props.spots.map( (spot) => {
-            return <Spot spot={spot} />;
+            return <Spot key={spot.id} spot={spot} />;
           })
         }
       </div>
