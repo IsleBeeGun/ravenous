@@ -1,7 +1,13 @@
 const apiKey = "AIzaSyC455u9Z-koM7HLLXX8GNkg82DXE3clo7w";
+let globalLatitude;
+let globalLongitude;
+navigator.geolocation.getCurrentPosition(function(position) {
+  globalLatitude = position.coords.latitude;
+  globalLongitude = position.coords.longitude;
+});
 const google = {
-  searchGoogle(query) {
-    return fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${query}&locationbias=ipbias&language=en&type=restaurant&maxprice=2&key=${apiKey}`)
+  searchGoogle(keyword, latitude, longitude, sortBy) {
+    return fetch(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latitude},${longitude}&rankby=distance&type=restaurant&keyword=${keyword}&key=${apiKey}`)
       .then(response => {
         return response.json();
       })
