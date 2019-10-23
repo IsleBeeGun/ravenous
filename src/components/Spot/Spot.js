@@ -12,8 +12,7 @@ class Spot extends React.Component {
         <div className="Spot-information">
           <div className="Spot-address">
             <p>{this.props.spot.address}</p>
-            <p>{this.props.spot.city}</p>
-            <p>{`${this.props.spot.state} ${this.props.spot.zipCode}`}</p>
+            <p>Price level: {this.props.spot.pricing}</p>
           </div>
           <div className="Spot-reviews">
             <h3>{this.props.spot.category.toUpperCase()}</h3>

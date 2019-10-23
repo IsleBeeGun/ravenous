@@ -7,10 +7,8 @@ let spot = {
   imageSrc: 'https://s3.amazonaws.com/codecademy-content/programs/react/ravenous/pizza.jpg',
   name: 'MarginOtto Pizzeria',
   address: '1010 Paddington Way',
-  city: 'Flavortown',
-  state: 'NY',
-  zipCode: '10101',
-  category: 'Italian',
+  category: 'restaurant',
+  pricing: 3,
   rating: 4.5,
   reviewCount: 90
 };
@@ -18,8 +16,8 @@ let spot = {
 const spots = [spot, spot, spot, spot, spot, spot];
 
 class App extends React.Component {
-  searchGoogle(keyword, sortBy) {
-     console.log(`You are searching for ${keyword} and ${sortBy}`);
+  searchGoogle(keyword, type, sortBy) {
+     console.log(`You are searching for ${keyword}, ${type} and ${sortBy}`);
   }
   render() {
     return (

@@ -2,7 +2,7 @@ import React from 'react';
 import './SearchBar.css';
 
 let sortByOptions = {
-    'Highest Rated': 'rates',
+    'Highest Rated': 'rating',
     'Nearest to me': 'nearest',
     'Most Reviewed': 'reviews'
 };
@@ -57,7 +57,7 @@ class SearchBar extends React.Component {
                     <input placeholder="Restaurant/Bar/Cafe" onChange={this.handleTypeChange} />
                 </div>
                 <div className="SearchBar-submit">
-                    <a onClick={this.handleSearch}>Let's Go</a>
+                    <button onClick={this.handleSearch}>Let's Go</button>
                 </div>
             </div>
         )
