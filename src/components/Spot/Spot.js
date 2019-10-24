@@ -1,6 +1,17 @@
 import React from 'react';
 import './Spot.css';
 
+function nameMyType(type) {
+  switch(type) {
+    case 'bakery': return 'Пекарня'; break;
+    case 'bar': return 'Бар'; break;
+    case 'cafe': return 'Кафе'; break;
+    case 'meal_delivery': return 'Доставка еды'; break;
+    case 'restaurant': return 'Ресторан'; break;
+    default: return 'Что-то ещё'; break;
+  }
+}
+
 class Spot extends React.Component {
   render() {
     return (
@@ -14,8 +25,9 @@ class Spot extends React.Component {
         </div>
         <div className="Spot-information">
           <div className="Spot-reviews">
-            <h3>{this.props.spot.category.toUpperCase()}</h3>
-            <h3 className="rating">{`${this.props.spot.rating} stars`}</h3>
+            <h3>{nameMyType(this.props.spot.category)}</h3>
+            <h3 className="rating">{`${this.props.spot.rating} -- `}</h3>
+            <img src="./star.svg" />
             <p>{`${this.props.spot.reviewCount} reviews`}</p>
           </div>
         </div>

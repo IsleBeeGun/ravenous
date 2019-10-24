@@ -12,7 +12,7 @@ class SearchBar extends React.Component {
     super(props);
     this.state = {
       keyword: '',
-      type: '',
+      type: 'restaurant',
       sortBy: 'nearest'
     };
     this.handleKeywordChange = this.handleKeywordChange.bind(this);
@@ -28,6 +28,7 @@ class SearchBar extends React.Component {
   }
   handleTypeChange(event) {
     this.setState({ type: event.target.value });
+    this.handleSearch(event);
   }
   getSortByClass(sortByOption) {
     if (sortByOption === this.state.sortBy) {
@@ -37,6 +38,7 @@ class SearchBar extends React.Component {
   }
   handleSortByChange(sortByOption) {
     this.setState({ sortBy: sortByOption });
+    this.handleSearch();
   }
   renderSortByOptions() {
     return Object.keys(sortByOptions).map(sortByOption => {
@@ -56,6 +58,7 @@ class SearchBar extends React.Component {
           <input placeholder="Я ищу ..." onChange={this.handleKeywordChange} />
           <select placeholder="Ресторан" onChange={this.handleTypeChange}>
             <option value="restaurant">Ресторан</option>
+            <option value="cafe">Кафе</option>
             <option value="bar">Бар</option>
             <option value="meal_delivery">Доставка еды</option>
             <option value="bakery">Пекарня</option>
