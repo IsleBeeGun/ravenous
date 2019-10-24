@@ -18,17 +18,17 @@ class SearchBar extends React.Component {
     this.handleKeywordChange = this.handleKeywordChange.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.render = this.render.bind(this);
   }
-  handleSearch(event) {
+  handleSearch() {
     this.props.searchGoogle(this.state.keyword, this.state.type, this.state.sortBy);
-    event.preventDefault();
   }
   handleKeywordChange(event) {
     this.setState({ keyword: event.target.value });
   }
   handleTypeChange(event) {
     this.setState({ type: event.target.value });
-    this.handleSearch(event);
+    this.handleSearch();
   }
   getSortByClass(sortByOption) {
     if (sortByOption === this.state.sortBy) {
@@ -38,6 +38,7 @@ class SearchBar extends React.Component {
   }
   handleSortByChange(sortByOption) {
     this.setState({ sortBy: sortByOption });
+    this.handleSearch();
   }
   renderSortByOptions() {
     return Object.keys(sortByOptions).map(sortByOption => {
