@@ -2,65 +2,70 @@ import React from 'react';
 import './SearchBar.css';
 
 let sortByOptions = {
-    'Highest Rated': 'rating',
-    'Nearest to me': 'nearest',
-    'Most Reviewed': 'reviews'
+  'Highest Rated': 'rating',
+  'Nearest to me': 'nearest',
+  'Most Reviewed': 'reviews'
 };
 
 class SearchBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            keyword: '',
-            type: '',
-            sortBy: 'nearest'
-        };
-        this.handleKeywordChange = this.handleKeywordChange.bind(this);
-        this.handleTypeChange = this.handleTypeChange.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      keyword: '',
+      type: '',
+      sortBy: 'nearest'
+    };
+    this.handleKeywordChange = this.handleKeywordChange.bind(this);
+    this.handleTypeChange = this.handleTypeChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+  }
+  handleSearch(event) {
+    this.props.searchGoogle(this.state.keyword, this.state.type, this.state.sortBy);
+    event.preventDefault();
+  }
+  handleKeywordChange(event) {
+    this.setState({ keyword: event.target.value });
+  }
+  handleTypeChange(event) {
+    this.setState({ type: event.target.value });
+  }
+  getSortByClass(sortByOption) {
+    if (sortByOption === this.state.sortBy) {
+      return 'active';
     }
-    handleSearch(event) {
-        this.props.searchGoogle(this.state.keyword, this.state.type, this.state.sortBy);
-        event.preventDefault();
-    }
-    handleKeywordChange(event) {
-        this.setState({ keyword: event.target.value });
-    }
-    handleTypeChange(event) {
-        this.setState({ type: event.target.value});
-    }
-    getSortByClass(sortByOption) {
-         if (sortByOption === this.state.sortBy) {
-             return 'active';
-         }
-         return '';
-    }
-    handleSortByChange(sortByOption) {
-        this.setState({sortBy: sortByOption});
-    }
-    renderSortByOptions() {
-      return Object.keys(sortByOptions).map(sortByOption => {
-          let sortByOptionValue = sortByOptions[sortByOption];
-          return <li onClick={this.handleSortByChange.bind(this, sortByOptionValue)} className={this.getSortByClass(sortByOptionValue)} key={sortByOptionValue}>{sortByOption}</li>
-      }) 
-    }
-    render() {
-        return (
-            <div className="SearchBar">
-                <div className="SearchBar-sort-options">
-                    <ul>
-                    {this.renderSortByOptions()}
-                    </ul>
-                </div>
-                <div className="SearchBar-fields">
-                    <input placeholder="Search for ..." onChange={this.handleKeywordChange} />
-                    <input placeholder="Restaurant/Bar/Cafe" onChange={this.handleTypeChange} />
-                </div>
-                <div className="SearchBar-submit">
-                    <button onClick={this.handleSearch}>Let's Go</button>
-                </div>
-            </div>
-        )
-    }
+    return '';
+  }
+  handleSortByChange(sortByOption) {
+    this.setState({ sortBy: sortByOption });
+  }
+  renderSortByOptions() {
+    return Object.keys(sortByOptions).map(sortByOption => {
+      let sortByOptionValue = sortByOptions[sortByOption];
+      return <li onClick={this.handleSortByChange.bind(this, sortByOptionValue)} className={this.getSortByClass(sortByOptionValue)} key={sortByOptionValue}>{sortByOption}</li>
+    })
+  }
+  render() {
+    return (
+      <div className="SearchBar">
+        <div className="SearchBar-sort-options">
+          <ul>
+            {this.renderSortByOptions()}
+          </ul>
+        </div>
+        <div className="SearchBar-fields">
+          <input placeholder="Search for ..." onChange={this.handleKeywordChange} />
+          <select placeholder="Restaurant/Bar/Cafe" onChange={this.handleTypeChange}>
+            <option value="restaurant">Ресторан</option>
+            <option value="bar">Бар</option>
+            <option value="meal_delivery">Доставка еды</option>
+            <option value="bakery">Пекарня</option>
+          </select>
+        </div>
+        <div className="SearchBar-submit">
+          <button onClick={this.handleSearch}>Let's Go</button>
+        </div>
+      </div>
+    )
+  }
 }
 export default SearchBar;

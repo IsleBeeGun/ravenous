@@ -43,7 +43,7 @@
   margin-bottom: 2.88rem;
 }
 
-.SearchBar-fields input {
+.SearchBar-fields input, .SearchBar-fields select {
   width: 21rem;
   padding: .66rem 1rem;
   margin-right: 2.22rem;
@@ -91,7 +91,7 @@
     align-items: center;
   }
 
-  .SearchBar-fields input {
+  .SearchBar-fields input, .SearchBar-fields select {
     margin-right: 0;
     margin-bottom: .86rem;
   }
