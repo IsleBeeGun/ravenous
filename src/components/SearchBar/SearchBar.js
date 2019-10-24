@@ -2,9 +2,9 @@ import React from 'react';
 import './SearchBar.css';
 
 let sortByOptions = {
-  'Highest Rated': 'rating',
-  'Nearest to me': 'nearest',
-  'Most Reviewed': 'reviews'
+  'Выше рейтинг': 'rating',
+  'Ближе ко мне': 'nearest',
+  'Больше отзывов': 'reviews'
 };
 
 class SearchBar extends React.Component {
@@ -53,8 +53,8 @@ class SearchBar extends React.Component {
           </ul>
         </div>
         <div className="SearchBar-fields">
-          <input placeholder="Search for ..." onChange={this.handleKeywordChange} />
-          <select placeholder="Restaurant/Bar/Cafe" onChange={this.handleTypeChange}>
+          <input placeholder="Я ищу ..." onChange={this.handleKeywordChange} />
+          <select placeholder="Ресторан" onChange={this.handleTypeChange}>
             <option value="restaurant">Ресторан</option>
             <option value="bar">Бар</option>
             <option value="meal_delivery">Доставка еды</option>
@@ -62,7 +62,7 @@ class SearchBar extends React.Component {
           </select>
         </div>
         <div className="SearchBar-submit">
-          <button onClick={this.handleSearch}>Let's Go</button>
+          <button onClick={this.handleSearch}>Показать места</button>
         </div>
       </div>
     )
