@@ -2,12 +2,12 @@ const apiKey = "AIzaSyC455u9Z-koM7HLLXX8GNkg82DXE3clo7w";
 let globalLatitude;
 let globalLongitude;
 function sortByKey(array, key) {
-  return array.sort(function(a, b) {
-      let x = a[key]; let y = b[key];
-      return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+  return array.sort(function (a, b) {
+    let x = a[key]; let y = b[key];
+    return ((x > y) ? -1 : ((x < y) ? 1 : 0));
   });
 }
-navigator.geolocation.getCurrentPosition(function(position) {
+navigator.geolocation.getCurrentPosition(function (position) {
   globalLatitude = position.coords.latitude;
   globalLongitude = position.coords.longitude;
 });
@@ -20,22 +20,14 @@ const Google = {
       .then(jsonResponse => {
         let spotsArray = jsonResponse.results.map(spot => {
           let checkedPhoto = spot.photos;
-          if (checkedPhoto!=undefined) {
+          if (checkedPhoto !== undefined) {
             checkedPhoto = spot.photos[0].photo_reference;
-            checkedPhoto = fetch(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=${checkedPhoto}&key=${apiKey}`)
-                      .then(response => {
-                        console.log(`This is response. ${response}`);
-                        return response.json();
-                      })
-                      .then(data => {
-                        console.log(`This is data. ${data}`);
-                        return data;
-                      });
+            checkedPhoto = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=${checkedPhoto}&key=${apiKey}`;
           } else {
             checkedPhoto = 'https://s3.amazonaws.com/codecademy-content/programs/react/ravenous/pizza.jpg';
           }
-          return { 
-            id: spot.id,                  
+          return {
+            id: spot.id,
             imageSrc: checkedPhoto,
             name: spot.name,
             address: spot.vicinity,
@@ -46,13 +38,14 @@ const Google = {
           }
         });
         switch (sortBy) {
-          case 'rating' :
-            sortByKey(spotsArray,'rating');
+          case 'rating':
+            sortByKey(spotsArray, 'rating');
             break;
           case 'nearest': break;
           case 'reviews':
-            sortByKey(spotsArray,'reviewCount');
+            sortByKey(spotsArray, 'reviewCount');
             break;
+          default: break;
         }
         return spotsArray;
       });
