@@ -33,8 +33,8 @@ const Google = {
             address: spot.vicinity,
             category: spot.types[0],
             pricing: spot.price_level,
-            rating: spot.rating,
-            reviewCount: spot.user_ratings_total
+            rating: (spot.rating===undefined) ? '0' : parseFloat(spot.rating).toFixed(1),
+            reviewCount: (spot.user_ratings_total===undefined) ? '0' : spot.user_ratings_total
           }
         });
         switch (sortBy) {
