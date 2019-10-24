@@ -38,16 +38,8 @@ function rusEndingMale(value) {
       case '3':
       case '4': return 'а';
       default: return 'ов';
+    }
   }
-}
-  // switch(end) {
-  //   case '0': return 'ов'; 
-  //   case '1': return '-'; 
-  //   case '2':
-  //   case '3':
-  //   case '4': return 'а';
-  //   default: return 'ов';
-  // }
 }
 
 class Spot extends React.Component {
