@@ -1,29 +1,28 @@
 import React from 'react';
 import './App.css';
-import BusinessList from '../BusinessList/BusinessList';
+import SpotList from '../SpotList/SpotList';
 import SearchBar from '../SearchBar/SearchBar';
-
-let business = {
-  imageSrc: 'https://s3.amazonaws.com/codecademy-content/programs/react/ravenous/pizza.jpg',
-  name: 'MarginOtto Pizzeria',
-  address: '1010 Paddington Way',
-  city: 'Flavortown',
-  state: 'NY',
-  zipCode: '10101',
-  category: 'Italian',
-  rating: 4.5,
-  reviewCount: 90
-};
-
-const businesses = [business, business, business, business, business, business];
+import Google from '../../util/Google';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      spots: []
+    }
+    this.searchGoogle = this.searchGoogle.bind(this);
+  }
+  searchGoogle(keyword, type, sortBy) {
+     Google.searchGoogle(keyword, type, sortBy).then(spots => {
+       this.setState( {spots: spots} )
+     });
+  }
   render() {
     return (
       <div className="App">
         <h1>ravenous</h1>
-        <SearchBar />
-        <BusinessList businesses={businesses}/>
+        <SearchBar searchGoogle={this.searchGoogle} />
+        <SpotList spots={this.state.spots}/>
       </div>
     );
   }

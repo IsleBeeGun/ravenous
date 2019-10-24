@@ -1,52 +1,57 @@
-.Business {
+.Spot {
     display: flex;
+    background-color: rgba(204,163,83,0.05);
+    border: 2px solid #CCA353;
+    border-radius: 4px;
     flex-direction: column;
     justify-content: space-between;
     width: 16.66rem;
     margin: 0 .5rem 2.3rem .5rem;
+    padding: 1.2rem;
   }
   
-  .Business .image-container {
+  .Spot .image-container {
     height: 16.66rem;
     margin-bottom: 1rem;
   }
   
-  .Business h2 {
+  .Spot h2 {
     margin-bottom: .5rem;
     font-size: 1.2rem;
     font-weight: 600;
   }
   
-  .Business-information {
+  .Spot-information {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
   
-  .Business-information p {
+  .Spot-information p {
     font-size: .88rem;
     font-weight: 300;
     line-height: 1rem;
   }
   
-  .Business-address {
+  .Spot-address {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    margin-bottom: 1.2rem;;
   }
   
-  .Business-reviews {
+  .Spot-reviews {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: right;
   }
   
-  .Business-reviews h3 {
+  .Spot-reviews h3 {
     color: #CCA353;
     font-weight: 600;
   }
   
-  .Business-reviews .rating {
+  .Spot-reviews .rating {
     font-size: .88rem;
     line-height: 1rem;
   }
