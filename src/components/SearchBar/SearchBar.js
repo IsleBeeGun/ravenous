@@ -12,22 +12,23 @@ class SearchBar extends React.Component {
     super(props);
     this.state = {
       keyword: '',
-      type: '',
+      type: 'restaurant',
       sortBy: 'nearest'
     };
     this.handleKeywordChange = this.handleKeywordChange.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.render = this.render.bind(this);
   }
-  handleSearch(event) {
+  handleSearch() {
     this.props.searchGoogle(this.state.keyword, this.state.type, this.state.sortBy);
-    event.preventDefault();
   }
   handleKeywordChange(event) {
     this.setState({ keyword: event.target.value });
   }
-  handleTypeChange(event) {
-    this.setState({ type: event.target.value });
+  async handleTypeChange(event) {
+    await this.setState({ type: event.target.value });
+    this.handleSearch();
   }
   getSortByClass(sortByOption) {
     if (sortByOption === this.state.sortBy) {
@@ -35,8 +36,9 @@ class SearchBar extends React.Component {
     }
     return '';
   }
-  handleSortByChange(sortByOption) {
-    this.setState({ sortBy: sortByOption });
+  async handleSortByChange(sortByOption) {
+    await this.setState({ sortBy: sortByOption });
+    this.handleSearch();
   }
   renderSortByOptions() {
     return Object.keys(sortByOptions).map(sortByOption => {
@@ -56,6 +58,7 @@ class SearchBar extends React.Component {
           <input placeholder="Я ищу ..." onChange={this.handleKeywordChange} />
           <select placeholder="Ресторан" onChange={this.handleTypeChange}>
             <option value="restaurant">Ресторан</option>
+            <option value="cafe">Кафе</option>
             <option value="bar">Бар</option>
             <option value="meal_delivery">Доставка еды</option>
             <option value="bakery">Пекарня</option>
