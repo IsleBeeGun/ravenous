@@ -1,5 +1,6 @@
 {
   "name": "ravenous",
+  "homepage": "https://ibgwiki.site/projects/ravenous/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
