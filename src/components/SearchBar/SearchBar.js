@@ -26,8 +26,8 @@ class SearchBar extends React.Component {
   handleKeywordChange(event) {
     this.setState({ keyword: event.target.value });
   }
-  handleTypeChange(event) {
-    this.setState({ type: event.target.value });
+  async handleTypeChange(event) {
+    await this.setState({ type: event.target.value });
     this.handleSearch();
   }
   getSortByClass(sortByOption) {
@@ -36,8 +36,8 @@ class SearchBar extends React.Component {
     }
     return '';
   }
-  handleSortByChange(sortByOption) {
-    this.setState({ sortBy: sortByOption });
+  async handleSortByChange(sortByOption) {
+    await this.setState({ sortBy: sortByOption });
     this.handleSearch();
   }
   renderSortByOptions() {
