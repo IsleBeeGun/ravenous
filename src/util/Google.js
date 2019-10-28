@@ -22,7 +22,7 @@ const Google = {
           let checkedPhoto = spot.photos;
           if (checkedPhoto !== undefined) {
             checkedPhoto = spot.photos[0].photo_reference;
-            checkedPhoto = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=${checkedPhoto}&key=${apiKey}`;
+            checkedPhoto = `https://maps.googleapis.com/maps/api/place/photo?maxheight=300&photoreference=${checkedPhoto}&key=${apiKey}`;
           } else {
             checkedPhoto = 'https://s3.amazonaws.com/codecademy-content/programs/react/ravenous/pizza.jpg';
           }

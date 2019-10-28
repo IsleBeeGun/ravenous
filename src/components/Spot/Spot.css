@@ -14,6 +14,12 @@
     height: 16.66rem;
     margin-bottom: 1rem;
   }
+
+  .Spot .image-container img {
+    height: 100%;
+    object-position: 50% 50%;
+    object-fit: none;
+  }
   
   .Spot h2 {
     margin-bottom: .5rem;
